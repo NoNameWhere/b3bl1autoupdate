@@ -17,13 +17,13 @@ local mem = require("memory")
 local sizeX, sizeY = getScreenResolution()
 local inifilename = 'b3bl1.ini'
 local jiasfjiasdfjidjfajs
-local ver = 1
-local ver_text = "1.2"
+local ver = 2
+local ver_text = "1.3"
 
 local update_url = "https://raw.githubusercontent.com/NoNameWhere/b3bl1autoupdate/master/update.ini"
 local update_path = getWorkingDirectory() .. "/update.ini"
 
-local script_url = ""
+local script_url = "https://github.com/NoNameWhere/b3bl1autoupdate/raw/main/b3bl1.lua"
 local script_path = thisScript().path
 local ini = inicfg.load({
     settings = {
@@ -71,6 +71,10 @@ imgui.OnInitialize(function()
     apply_grey_style()
 end)
  -- functions --
+
+ function testupdate()
+    sampShowDialog(1488, "test", "test", "test", "", 0)
+ end
 
  function math.calculate(MinInt, MaxInt, MinFloat, MaxFloat, CurrentFloat)
     local res = CurrentFloat - MinFloat
@@ -474,6 +478,7 @@ end)
 
 function main()
     while not isSampAvailable() do wait (200) end
+    sampRegisterChatCommand("testupdate", testupdate)
     sampAddChatMessage("", -1)
     sampAddChatMessage(prefix.."Скрипт {2EB62B}запущен!", -1)
     sampAddChatMessage(prefix.. "Активация скрипта: /" .. ini.settings.commandmenu, -1)
